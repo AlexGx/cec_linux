@@ -56,19 +56,26 @@ bitflags! {
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     pub struct Capabilities: u32 {
         /// Userspace has to configure the physical address. Do so via [CecDevice::set_phys](super::CecDevice::set_phys)
-        const PHYS_ADDR = 0b00000001;
+        const PHYS_ADDR = (1 << 0);
         /// Userspace has to configure the logical addresses. Do so via [CecDevice::set_log](super::CecDevice::set_log)
-        const LOG_ADDRS = 0b00000010;
+        const LOG_ADDRS = (1 << 1);
         /// Userspace can transmit messages (and thus become [follower](CecModeFollower) as well)
-        const TRANSMIT = 0b00000100;
-
+        const TRANSMIT = (1 << 2);
         /// Passthrough all messages instead of processing them.
-        const PASSTHROUGH = 0b00001000;
+        const PASSTHROUGH = (1 << 3);
         /// Supports remote control
-        const RC = 0b00010000;
+        const RC = (1 << 4);
         /// Hardware can monitor all messages, not just directed and broadcast.
         /// Needed for [CecModeFollower::MonitorAll]
-        const MONITOR_ALL = 0b00100000;
+        const MONITOR_ALL = (1 << 5);
+        /// Hardware can use CEC only if the HDMI HPD pin is high.
+        const NEEDS_HPD = (1 << 6);
+        /// Hardware can monitor CEC pin transitions */
+        const MONITOR_PIN =	(1 << 7);
+        /// CEC_ADAP_G_CONNECTOR_INFO is available */
+        const CONNECTOR_INFO = (1 << 8);
+        /// CEC_MSG_FL_REPLY_VENDOR_ID is available */
+        const REPLY_VENDOR_ID =	(1 << 9);
     }
 }
 
