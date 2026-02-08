@@ -576,8 +576,8 @@ impl CecMsg {
     pub fn len(&self) -> u32 {
         self.len
     }
-    pub fn tx_status(&self) -> TxStatus {
-        self.tx_status
+    pub fn tx_status_ok(&self) -> bool {
+        self.tx_status.contains(TxStatus::OK)
     }
     pub fn init(from: CecLogicalAddress, to: CecLogicalAddress) -> CecMsg {
         let mut m = Self {
