@@ -204,7 +204,7 @@ impl CecDevice {
                 CecTxError::from(msg),
             ))
         } */
-        println!("{:#?}", msg);
+        println!("{:?}", msg);
         Ok(msg.tx_status.contains(TxStatus::OK))
     }
     /// send a cec command without parameters to a remote device
