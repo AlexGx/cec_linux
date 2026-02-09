@@ -195,7 +195,6 @@ impl CecDevice {
     /// send poll
     pub fn poll_addr(&self, from: CecLogicalAddress, to: CecLogicalAddress) -> Result<bool> {
         let mut msg = CecMsg::init(from, to);
-        // len=1 from init() — poll, no opcode
         unsafe { transmit(self.0.as_raw_fd(), &mut msg) }?;
         Ok(msg.tx_status.contains(TxStatus::OK))
     }

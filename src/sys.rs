@@ -572,13 +572,14 @@ impl CecMsg {
         // !(msg->rx_status & CEC_RX_STATUS_FEATURE_ABORT)
         !self.rx_status.contains(RxStatus::FEATURE_ABORT)
     }
-    // WIP:
+    // TEMP
     pub fn len(&self) -> u32 {
         self.len
     }
     pub fn tx_status_ok(&self) -> bool {
         self.tx_status.contains(TxStatus::OK)
     }
+    // TEMP END
     pub fn init(from: CecLogicalAddress, to: CecLogicalAddress) -> CecMsg {
         let mut m = Self {
             tx_ts: 0,
