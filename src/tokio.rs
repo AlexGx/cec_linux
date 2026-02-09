@@ -37,6 +37,11 @@ impl AsyncCec {
             .async_io(Interest::PRIORITY, |inner| inner.get_event())
             .await
     }
+    pub async fn poll(&self, from: CecLogicalAddress, to: CecLogicalAddress) -> Result<bool> {
+        self.0
+            .async_io(Interest::WRITABLE, |inner| inner.poll(from, to))
+            .await
+    }
     pub async fn transmit(
         &self,
         from: CecLogicalAddress,

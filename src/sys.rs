@@ -191,7 +191,7 @@ impl CecLogAddrs {
     ) -> CecLogAddrs {
         assert!(primary_type.len() <= Self::CEC_MAX_LOG_ADDRS);
         assert_eq!(primary_type.len(), addr_type.len());
-        
+
         let mut log = CecLogAddrs {
             num_log_addrs: primary_type.len() as u8,
             cec_version,
