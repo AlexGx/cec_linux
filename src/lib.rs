@@ -193,7 +193,7 @@ impl CecDevice {
         self.transmit(from, to, CecOpcode::UserControlReleased)
     }
     /// poll
-    pub fn poll(&self, from: CecLogicalAddress, to: CecLogicalAddress) -> Result<bool> {
+    pub fn poll_addr(&self, from: CecLogicalAddress, to: CecLogicalAddress) -> Result<bool> {
         let mut msg = CecMsg::init(from, to);
         unsafe { transmit(self.0.as_raw_fd(), &mut msg) }?;
         /* if msg.tx_status.contains(TxStatus::OK) {
