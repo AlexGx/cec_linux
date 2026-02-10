@@ -192,20 +192,11 @@ impl CecDevice {
         self.transmit_data(from, to, CecOpcode::UserControlPressed, &[key.into()])?;
         self.transmit(from, to, CecOpcode::UserControlReleased)
     }
-    /// poll
-    pub fn poll_addr(&self, from: CecLogicalAddress, to: CecLogicalAddress) -> Result<bool> {
+    /// send poll msg with len=1
+    pub fn poll_addr(&self, from: CecLogicalAddress, to: CecLogicalAddress) -> Result<()> {
         let mut msg = CecMsg::init(from, to);
         unsafe { transmit(self.0.as_raw_fd(), &mut msg) }?;
-        /* if msg.tx_status.contains(TxStatus::OK) {
-            Ok(())
-        } else {
-            Err(std::io::Error::new(
-                std::io::ErrorKind::Other,
-                CecTxError::from(msg),
-            ))
-        } */
-        println!("{:?}", msg);
-        Ok(msg.tx_status.contains(TxStatus::OK))
+        msg_to_io_result(msg)
     }
     /// send a cec command without parameters to a remote device
     ///
