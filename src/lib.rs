@@ -193,11 +193,17 @@ impl CecDevice {
         self.transmit(from, to, CecOpcode::UserControlReleased)
     }
     /// send poll msg with len=1, returns TxStatus
-    pub fn poll_addr(&self, from: CecLogicalAddress, to: CecLogicalAddress) -> Result<TxStatus> {
+    // pub fn poll_addr(&self, from: CecLogicalAddress, to: CecLogicalAddress) -> Result<TxStatus> {
+    //     let mut msg = CecMsg::init(from, to);
+    //     unsafe { transmit(self.0.as_raw_fd(), &mut msg) }?;
+    //     Ok(msg.tx_status)
+    // }
+    pub fn poll_addr(&self, from: CecLogicalAddress, to: CecLogicalAddress) -> Result<()> {
         let mut msg = CecMsg::init(from, to);
         unsafe { transmit(self.0.as_raw_fd(), &mut msg) }?;
-        Ok(msg.tx_status)
+        msg_to_io_result(msg)
     }
+
     /// send a cec command without parameters to a remote device
     ///
     /// transmitting from an address not in [CecLogAddrMask] will return InvalidInput
