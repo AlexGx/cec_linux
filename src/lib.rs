@@ -33,7 +33,7 @@ use std::{
 };
 use sys::{
     capabilities, get_event, get_log, get_mode, get_phys, receive, set_log, set_mode, set_phys,
-    transmit, CecEventType, CecTxError, /*RxStatus, TxStatus,*/ CEC_MODE_FOLLOWER_MSK,
+    transmit, CecEventType, /*CecTxError RxStatus, TxStatus,*/ CEC_MODE_FOLLOWER_MSK,
     CEC_MODE_INITIATOR_MSK,
 };
 pub use sys::{
@@ -41,7 +41,7 @@ pub use sys::{
     CecLogAddrMask, CecLogAddrType, CecLogAddrs, CecLogicalAddress, CecModeFollower,
     CecModeInitiator, CecMsg, CecOpcode, CecPhysicalAddress, CecPowerStatus, CecPrimDevType,
     CecTimer, CecUserControlCode, DeckControlMode, DeckInfo, DisplayControl, MenuRequestType,
-    OSDStr, PlayMode, RecordingSequence, StatusRequest, VendorID, Version, RxStatus, TxStatus
+    OSDStr, PlayMode, RecordingSequence, StatusRequest, VendorID, Version, RxStatus, TxStatus, CecTxError
 };
 
 #[cfg(feature = "tokio")]
