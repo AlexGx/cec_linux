@@ -1,6 +1,6 @@
 use crate::{
     CecCaps, CecEvent, CecLogAddrs, CecLogicalAddress, CecModeFollower, CecModeInitiator, CecMsg,
-    CecOpcode, CecPhysicalAddress,
+    CecOpcode, CecPhysicalAddress, TxStatus
 };
 use nix::libc::O_NONBLOCK;
 use std::fs::OpenOptions;
