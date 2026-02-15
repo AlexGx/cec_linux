@@ -41,7 +41,7 @@ pub use sys::{
     CecLogAddrMask, CecLogAddrType, CecLogAddrs, CecLogicalAddress, CecModeFollower,
     CecModeInitiator, CecMsg, CecOpcode, CecPhysicalAddress, CecPowerStatus, CecPrimDevType,
     CecTimer, CecUserControlCode, DeckControlMode, DeckInfo, DisplayControl, MenuRequestType,
-    OSDStr, PlayMode, RecordingSequence, StatusRequest, VendorID, Version, TxStatus
+    OSDStr, PlayMode, RecordingSequence, StatusRequest, TxStatus, VendorID, Version,
 };
 
 #[cfg(feature = "tokio")]
@@ -322,7 +322,7 @@ pub enum CecEvent {
 
 /// Turn a message into io::Result
 fn msg_to_io_result(msg: CecMsg) -> Result<()> {
-    // for sync it never empty, for async it empty or not OK
+    // for sync it is never empty, for async it empty (0x0) if queued or non-OK
     if msg.tx_status.contains(TxStatus::OK) || msg.tx_status.is_empty() {
         Ok(())
     } else {
