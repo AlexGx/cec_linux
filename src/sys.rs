@@ -1382,6 +1382,11 @@ impl VendorID {
      * should be disabled (CEC_S_VENDOR_ID)
      */
     pub const NONE: u32 = 0xffffffff;
+    /**
+     * Use this neutral ID (assigned to HDMI Licensing, LLC.) when a valid vendor ID
+     * is required instead of leaving it disabled.
+     */
+    pub const HDMI: u32 = 0x000c03;
 }
 
 bitflags! {
