@@ -573,14 +573,6 @@ impl CecMsg {
     pub fn is_broadcast(&self) -> bool {
         (self.msg[0] & 0xf) == 0xf
     }
-    /// return bytes length of the message
-    // pub fn msg_len(&self) -> u32 {
-    //     self.len
-    // }
-    /// return true if TxStatus::OK bit it set
-    // pub fn is_tx_status_ok(&self) -> bool {
-    //     self.tx_status.contains(TxStatus::OK)
-    // }
     pub fn is_ok(&self) -> bool {
         //(msg->tx_status && !(msg->tx_status & CEC_TX_STATUS_OK))
         if !self.tx_status.is_empty() && !self.tx_status.contains(TxStatus::OK) {
