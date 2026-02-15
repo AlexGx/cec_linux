@@ -193,7 +193,7 @@ impl CecDevice {
         self.transmit(from, to, CecOpcode::UserControlReleased)
     }
     /// send poll msg with len=1
-    pub fn poll_addr(&self, from: CecLogicalAddress, to: CecLogicalAddress) -> Result<()> {
+    pub fn transmit_poll(&self, from: CecLogicalAddress, to: CecLogicalAddress) -> Result<()> {
         let mut msg = CecMsg::init(from, to);
         unsafe { transmit(self.0.as_raw_fd(), &mut msg) }?;
         msg_to_io_result(msg)
