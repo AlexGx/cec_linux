@@ -322,7 +322,7 @@ pub enum CecEvent {
 
 /// Turn a message into io::Result
 fn msg_to_io_result(msg: CecMsg) -> Result<()> {
-    // for sync it is never empty, for async it empty (0x0) if queued or non-OK
+    // for sync it is never empty, for async it empty if queued or non-OK
     if msg.tx_status.contains(TxStatus::OK) || msg.tx_status.is_empty() {
         Ok(())
     } else {
